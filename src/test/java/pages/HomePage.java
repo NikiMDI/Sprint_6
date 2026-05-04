@@ -14,8 +14,10 @@ public class HomePage {
     private By orderButtonInHeader = By.cssSelector("div button[class='Button_Button__ra12g']");
     //Локатор кнопки заказа в теле
     private By orderButtonInBody = By.cssSelector("div button[class='Button_Button__ra12g Button_UltraBig__UU3Lp']");
-    //Локатор, который ищет список важных вопросов
-    private By questionsListButton = By.cssSelector(".Home_FAQ__3uVm4>div>div>div>div");
+    // список вопросов
+    private By questionsList = By.cssSelector(".Home_FAQ__3uVm4>div>div>div>div");
+    // список ответов
+    private By answersList = By.cssSelector(".accordion__panel p");
     //Локатор, который ищет текст ответа на последний вопрос в списке важных вопросов
     private By textEndElementInList = By.xpath("//p[contains(text(),'Да, обязательно. Всем самокатов! И Москве, и Московской области.')]");
     //Локатор, который ищет изображения логотипа самоката
@@ -47,33 +49,25 @@ public class HomePage {
         scrollIntoElement(orderButtonInBody);
     }
 
-    //Метод, который проходится по всему списку важных вопросов
-    public void clickQuestionsListButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    //Кликаем по вопросу из списка
+    public void clickQuestionByIndex(int index) {
+        List<WebElement> questions = driver.findElements(questionsList);
+        WebElement question = questions.get(index);
 
-        int size = driver.findElements(questionsListButton).size();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", question);
 
-        for (int i = 0; i < size; i++) {
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.elementToBeClickable(question));
 
-            List<WebElement> questions = driver.findElements(questionsListButton);
-            WebElement question = questions.get(i);
-
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", question);
-            wait.until(ExpectedConditions.elementToBeClickable(question));
-
-            try {
-                question.click();
-            } catch (ElementClickInterceptedException e) {
-                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", question);
-            }
-        }
+        question.click();
     }
 
     //Метод для получения текста элемента в списке важных вопросов
-    public String getTextInQuestionForm(){
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(textEndElementInList));
-        return driver.findElement(textEndElementInList).getText();
+    public String getAnswerTextByIndex(int index) {
+        List<WebElement> answers = driver.findElements(answersList);
+
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(answers.get(index)));
+
+        return answers.get(index).getText();
     }
 
     //Метод, который кликает по логотипу самоката
