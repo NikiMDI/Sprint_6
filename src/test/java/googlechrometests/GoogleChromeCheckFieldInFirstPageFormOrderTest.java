@@ -1,30 +1,14 @@
 package googlechrometests;
 
+import base.BaseGoogleChromeTest;
 import pages.HomePage;
 import pages.OrderFormFirstPage;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-public class GoogleChromeCheckFieldInFirstPageFormOrderTest {
-
-    private WebDriver driver;
-    private static final String BASE_URL = "https://qa-scooter.education-services.ru/";
-
-    @BeforeEach
-    public void setUp() {
-        ChromeOptions options = new ChromeOptions(); // Драйвер для браузера Chrome
-        //options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.get(BASE_URL);
-    }
+public class GoogleChromeCheckFieldInFirstPageFormOrderTest extends BaseGoogleChromeTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"test", "", " "})
@@ -77,10 +61,5 @@ public class GoogleChromeCheckFieldInFirstPageFormOrderTest {
         formFirstPage.setUserTelephone(telephone);
         formFirstPage.clickContinueButton();
         Assertions.assertEquals("Введите корректный номер", formFirstPage.getTelephoneFieldErrorText());
-    }
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
     }
 }
