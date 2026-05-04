@@ -27,7 +27,7 @@ public class GoogleChromeCheckLogoInHeaderTest {
     @Test
     public void checkLogoScooterInHeader() {
         HomePage homePage = new HomePage(driver);
-        Assertions.assertTrue(homePage.checkLogoScooter());
+        Assertions.assertEquals(BASE_URL, homePage.checkLogoScooter());
     }
 
     @Test

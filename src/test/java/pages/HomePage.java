@@ -76,9 +76,10 @@ public class HomePage {
         return driver.findElement(textEndElementInList).getText();
     }
 
-    //Проверяем, что изображение присутствует
-    public boolean checkLogoScooter(){
-        return driver.findElement(logoScooter).isDisplayed();
+    //Метод, который кликает по логотипу самоката
+    public String checkLogoScooter(){
+        driver.findElement(logoScooter).click();
+        return driver.getCurrentUrl();
     }
 
     //Метод, который кликает по логотипу яндекса
