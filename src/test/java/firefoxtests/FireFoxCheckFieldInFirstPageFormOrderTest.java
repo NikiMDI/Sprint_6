@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class FireFoxCheckFieldInFirstPageFormOrder {
+public class FireFoxCheckFieldInFirstPageFormOrderTest {
 
     private WebDriver driver;
     private static final String BASE_URL = "https://qa-scooter.education-services.ru/";

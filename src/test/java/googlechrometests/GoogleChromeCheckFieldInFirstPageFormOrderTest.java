@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class GoogleChromeCheckFieldInFirstPageFormOrder {
+public class GoogleChromeCheckFieldInFirstPageFormOrderTest {
 
     private WebDriver driver;
     private static final String BASE_URL = "https://qa-scooter.education-services.ru/";
