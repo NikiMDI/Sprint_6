@@ -1,8 +1,8 @@
-package FireFoxTests;
+package firefoxtests;
 
-import Pages.HomePage;
-import Pages.OrderFormFirstPage;
-import Pages.OrderFormSecondPage;
+import pages.HomePage;
+import pages.OrderFormFirstPage;
+import pages.OrderFormSecondPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class FireFoxCheckOrderUsingButtonInHeaderAndBodyTest {
     private WebDriver driver;
+    private static final String BASE_URL = "https://qa-scooter.education-services.ru/";
 
     @BeforeEach
     public void setUp() {
@@ -22,7 +23,7 @@ public class FireFoxCheckOrderUsingButtonInHeaderAndBodyTest {
         //options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
         driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
-        driver.get("https://qa-scooter.education-services.ru/");
+        driver.get(BASE_URL);
     }
 
     @ParameterizedTest
